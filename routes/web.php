@@ -11,10 +11,11 @@ use Illuminate\Http\Request; //THIS IS IMPORTANT
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/todos','TodoController@index');
+Route::get('/todos','TodoController@index')->name('todo.index');
 Route::get('/todos/create','TodoController@create');
 Route::post('/todos/create', 'TodoController@store');
 Route::get('/todos/{todo}/edit', 'TodoController@edit');
+Route::patch('/todos/{todo}/update', 'TodoController@update')->name('todo.update');
 
 Route::get('/', function () {
     // return env('App_Name');

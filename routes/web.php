@@ -1,6 +1,4 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; //THIS IS IMPORTANT
 
 /*
@@ -13,6 +11,10 @@ use Illuminate\Http\Request; //THIS IS IMPORTANT
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/todos','TodoController@index');
+Route::get('/todos/create','TodoController@create');
+Route::post('/todos/create', 'TodoController@store');
+Route::get('/todos/edit', 'TodoController@edit');
 
 Route::get('/', function () {
     // return env('App_Name');

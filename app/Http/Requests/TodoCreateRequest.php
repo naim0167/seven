@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
-
 class TodoCreateRequest extends FormRequest
 {
     /**
@@ -31,7 +29,7 @@ class TodoCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.max' => 'Todo title should not be greater than 255 characters.',
+            'title.max'=>'Todo title should not be greater than 255 characters.',
         ];
     }
 

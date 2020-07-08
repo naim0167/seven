@@ -11,9 +11,18 @@
     <div>
         <div>
             <div>
+                <h3 class="text-lg">Description</h3>
                 <p>{{$todo->description}}</p>
             </div>
         </div>
+        @if($todo->steps->count()>0)
+            <div class="py-4 ">
+            <h3 class="text-lg">Step for this task</h3>
+            @foreach($todo->steps as $step)
+            <p>{{$step->name}}</p>
+            @endforeach
+            </div>
+        @endif
     </div>
     {{-- <form method="post" action="{{route('todo.store')}}" class="py-5">
     @csrf

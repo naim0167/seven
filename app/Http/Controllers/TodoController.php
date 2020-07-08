@@ -30,7 +30,7 @@ class TodoController extends Controller
         // $userId = auth()->id();
         // $request['user_id']= $userId;
         auth()->user()->todos()->create($request->all());
-        return redirect()->back()->with('message','Todo Created Successfully');
+        return redirect(route('todo.index'))->with('message','Todo Created Successfully');
     }
 
     public function edit(Todo $todo)

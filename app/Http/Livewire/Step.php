@@ -4,23 +4,19 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Counter extends Component
+class Step extends Component
 {
-    public $count = 0;
-
+    public $steps = 0;
     public function increment()
     {
-    $this->count++;
+        $this->steps++;
     }
-
     public function decrement()
     {
-    $this->count--;
+    $this->steps--;
     }
-
     public function render()
     {
-    return view('livewire.counter');
+        return view('livewire.step');
     }
-
 }

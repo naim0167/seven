@@ -1,30 +1,45 @@
 @extends('todos.layout')
 
 @section ('content')
-    <div class="flex justify-center border-b pb-4">
+    <div class="flex justify-between border-b pb-4 px-4">
         <h1 class="text-2xl">All Your Todos: </h1>
-        <a href="/todos/create" class="mx-5 py-1 px-1 bg-blue-300 cursor-pointer rounded text-white">Create New</a>
+        <a href="{{route('todo.create')}}" class="mx-5 py-2 cursor-pointer text-blue-400">
+            <span class="fas fa-plus-circle"></span>
+        </a>
     </div>
     <ul class="my-5">
         <x-alert/>
-        @foreach ($todos as $todo)
+        @forelse($todos as $todo)
         <li class="flex justify-between p-2">
+            <div>
+            @include('todos.complete-button')
+            </div>
             @if ($todo->completed)
             <p class="line-through">{{$todo->title}}</p>
             @else
-            <p>{{$todo->title}}</p>
+            <a class="cursor-pointer" href="{{route('todo.show',$todo->id)}}">
+            {{$todo->title}}</a>
             @endif
+
             <div>
-                <a href="{{'/todos/'.$todo->id.'/edit'}}" class="cursor-pointer">
-                <span class="fas fa-edit text-orange-400 px-2"/>
+                <a href="{{route('todo.edit',$todo->id)}}" class="cursor-pointer">
+                <span class="fas fa-pen text-orange-400 px-2"/>
                 </a>
-                @if ($todo->completed)
-                    <span class="fas fa-check text-green-400 px-2"/>
-                @else
-                    <span class="fas fa-check text-gray-300 cursor-pointer px-2"/>
-                @endif
+
+                <span class="fas fa-times text-red-500 px-2 cursor-pointer"
+                    onclick="event.preventDefault();
+                    if(confirm('Are you really want to delete?')){
+                    document.getElementById('form-delete-{{$todo->id}}')
+                    .submit()
+                    }"/>
+                <form style="display:none" id="{{'form-delete-'.$todo->id}}" method="post" action="{{route('todo.destroy',$todo->id)}}"  >
+                    @csrf
+                    @method('delete')
+                </form>
             </div>
         </li>
-        @endforeach
+        @empty
+            <p>No task available, create one.</p>
+        @endforelse
     </ul>
 @endsection

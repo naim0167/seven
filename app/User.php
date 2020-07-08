@@ -51,12 +51,8 @@ class User extends Authenticatable
             Storage::delete('/public/image/' . auth()->user()->avatar);
             }
     }
-    
-    // public function setPasswordAttribute($password){
-    //     $this->attributes['password']=bcrypt($password);
-    // }
-
-    // public function getNameAttribute($name){
-    // return 'My name is: ' .ucfirst($name);
-    // }
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 }

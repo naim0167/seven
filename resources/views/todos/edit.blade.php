@@ -10,6 +10,6 @@
         <input type="submit" value="Update" class="p-2 border rounded-lg">
     </form>
 
-    <a href="/todos" class="mx-5 my-5 py-1 px-1 bg-white-300 border cursor-pointer rounded">Back</a>
+    <a href="{{route('todo.index')}}" class="mx-5 my-5 py-1 px-1 bg-white-300 border cursor-pointer rounded">Back</a>
 
 @endsection
